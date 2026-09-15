@@ -1,0 +1,10 @@
+{
+    "preset": "psr12",
+    "notPath": [
+        "bootstrap/cache",
+        "vendor",
+        "vendor1",
+        "storage",
+        "node_modules"
+    ]
+}

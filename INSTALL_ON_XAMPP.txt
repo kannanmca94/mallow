@@ -1,0 +1,43 @@
+WINDOWS XAMPP QUICK START
+
+1. Open XAMPP Control Panel.
+2. Start Apache and MySQL.
+3. Open http://localhost/phpmyadmin
+4. Create database: mallow_billing
+5. Open Command Prompt:
+   cd C:\xampp\htdocs
+   composer create-project laravel/laravel mallow-billing
+6. Copy the contents of this ZIP into C:\xampp\htdocs\mallow-billing
+7. In the project folder:
+   php artisan key:generate
+   php artisan migrate --seed
+   php artisan serve
+8. Open:
+   http://127.0.0.1:8000
+
+Test API using Postman:
+POST http://127.0.0.1:8000/api/usage
+Body -> raw -> JSON:
+{
+  "customer_id": 1,
+  "usage_date": "2026-09-15",
+  "units": 100,
+  "idempotency_key": "demo-001"
+}
+
+Dashboard:
+GET http://127.0.0.1:8000/api/merchants/1/dashboard
+
+Invoice:
+POST http://127.0.0.1:8000/api/subscriptions/1/invoice
+Body:
+{
+  "period_start": "2026-09-01",
+  "period_end": "2026-09-30"
+}
+
+Queue:
+php artisan queue:work
+
+Tests:
+php artisan test
